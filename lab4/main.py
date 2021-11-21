@@ -95,17 +95,12 @@ class AA:
         else:
             meth = fpmax
 
-        arr = []
-        for minSup in np.linspace(0.005, 1):
-            results = meth(self.data, min_support=minSup, use_colnames=True)
-            arr.append(len(results))
-        plt.plot(np.linspace(0.005, 1), arr)
         for i in range(4):
             arr = []
-            for minSup in np.linspace(0.005, 1):
+            for minSup in np.linspace(0.005, 1.0, 500):
                 results = meth(self.data, min_support=minSup, use_colnames=True, max_len=i)
                 arr.append(len(results))
-            plt.plot(np.linspace(0.005, 1), arr)
+            plt.plot(np.linspace(0.005, 1, 500), arr)
         plt.show()
 
     def aa(self):
@@ -146,7 +141,7 @@ class AA:
 
 
 def main():
-    AA().graph()
+    AA().graphic()
 
 
 if __name__ == '__main__':
