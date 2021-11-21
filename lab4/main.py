@@ -95,12 +95,15 @@ class AA:
         else:
             meth = fpmax
 
-        for i in range(4):
+        colors = ['r', 'c', 'y', 'g', 'b']
+        for i in range(1, 6):
             arr = []
             for minSup in np.linspace(0.005, 1.0, 500):
                 results = meth(self.data, min_support=minSup, use_colnames=True, max_len=i)
+                results['length'] = results['itemsets'].apply(lambda x: len(x))
+                results = results[results['length'] == i]
                 arr.append(len(results))
-            plt.plot(np.linspace(0.005, 1, 500), arr)
+            plt.plot(np.linspace(0.005, 1, 500), arr, colors[i - 1])
         plt.show()
 
     def aa(self):
